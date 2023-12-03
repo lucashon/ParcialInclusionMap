@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/dados.css">
+
+    <div class="todes show"> </div>
+    <section class="container-list">
+        <div class="list">
+    
+            {{#each info}}
+        <div class="info">
+            <div class="box-mais">
+               <div> <img src="/assets/perfil.avif" alt="" width="55px" height="55px"> </div>
+            <p class="nomeCidadao"><span>Nome:</span> {{this.nome}}</p>
+            </div>
+            
+            <p><span>Deficiência:</span> {{this.descricao}}</p>
+                
+                <div class="container-maisinfo">
+                    
+                <a class="link-maisinfo" href="/inclusion/perfil/{{this.id}}">Mais Informações</a>
+                </div>
+                {{!-- <a href="/inclusion/login/{{this.id}}">Login</a> --}}
+
+
+
+
+        </div>
+            {{/each}}
+
+    </div>
+    </section>
+
+<script src="/script/mostrar.js"></script>
