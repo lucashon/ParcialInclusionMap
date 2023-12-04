@@ -3,17 +3,17 @@ const Cidadaos = require('../models/cidadaos')
 
 module.exports = class infoController {
 
-    // rota home
+    //////// rota home
     static createCadastro(request, response) {
         return response.render('home')
     }
 
 
 
-    //     // cadastrar usuarios
+    /////// cadastrar usuarios
     static async addCadastro(request, response) {
         const { nome, email, senha, cpf, descricao, dificuldade } = request.body
-       
+
 
 
         const checkIfUserExist = await Cidadaos.findOne({ where: { email: email } })
@@ -37,13 +37,14 @@ module.exports = class infoController {
             request.session.userId = createUser.id
             // contar cadastros
             const count = await Cidadaos.count()
+            // Mostrar o perfil de quem fez o cadastro
             const user = await Cidadaos.findOne({ raw: true, where: { email: checkIf } })
             const id = user.id
             console.log(checkIf)
 
-        
+
             request.session.save(() => {
-                response.render('dados', { count , id })
+                response.render('dados', { count, id })
                 return;
             })
         } catch (error) {
@@ -51,28 +52,29 @@ module.exports = class infoController {
         }
     }
 
-////////////////// Quantidade
-static async mostrarInfo(request,response){
-      
-    try {
-     const count = await Cidadaos.count()
-   return  response.render('dadosPrefeitura', {count})
-     
-    } catch (error) {
-     console.log(error)
-   return  response.status(500).send('Erro interno do servidor ')
+    ////////////////// Quantidade
+    static async mostrarInfo(request, response) {
+
+        try {
+            const count = await Cidadaos.count()
+            return response.render('dadosPrefeitura', { count })
+
+        } catch (error) {
+            console.log(error)
+            return response.status(500).send('Erro interno do servidor ')
+        }
+
     }
-         
- }
 
 
-       ///////////////////////// mostrar Para prefeitura
+    ///////////////////////// mostrar Para prefeitura
     static async detalhes(request, response) {
+        const count = await Cidadaos.count()
         const info = await Cidadaos.findAll({ raw: true })
-        return response.render('info', { info })
+        return response.render('info', { info, count })
     }
 
-   //////////////////////// // Perfil - prefeitura
+    //////////////////////// // Perfil - prefeitura
     static async perfil(request, response) {
         const id = request.params.id
         const perfil = await Cidadaos.findOne({ raw: true, where: { id: id } })
@@ -81,11 +83,11 @@ static async mostrarInfo(request,response){
     }
 
     //////////////// Excluir perfil - Prefeitura 
-    static async excluir(request,response){
+    static async excluir(request, response) {
         const id = request.params.id
-        await Cidadaos.destroy({where:{id:id}})
+        await Cidadaos.destroy({ where: { id: id } })
 
-       return response.redirect('/inclusion/mostrar')
+        return response.redirect('/inclusion/mostrar')
     }
 
 
@@ -117,29 +119,29 @@ static async mostrarInfo(request,response){
 
 
     // PERFIL
-    static async perfilCitizen(request, response){
+    static async perfilCitizen(request, response) {
         const id = request.params.id
-        const perfilCitizen = await Cidadaos.findOne({raw:true, where:{id:id}})
+        const perfilCitizen = await Cidadaos.findOne({ raw: true, where: { id: id } })
 
 
-        return response.render('user', {perfilCitizen})
+        return response.render('user', { perfilCitizen })
     }
     //  Voltar do perfil 
-    static async voltarMostrar(request, response){
+    static async voltarMostrar(request, response) {
         const id = request.params.id
 
         console.log(id)
-try {
-    const count = await Cidadaos.count()
-    const user = await Cidadaos.findOne({ raw: true, where: { id: id } })
-    
-    response.render('dados', { count , id })
-    return;
-    
-} catch (error) {
-    console.log(error)
-}
-   
+        try {
+            const count = await Cidadaos.count()
+            const user = await Cidadaos.findOne({ raw: true, where: { id: id } })
+
+            response.render('dados', { count, id })
+            return;
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
 
@@ -147,26 +149,26 @@ try {
 
     // Rota para Login Cidadão
 
-    static async loginPost(request, response){
-        const {email, senha} = request.body
-    
-        const user = await Cidadaos.findOne({where: {email:email}})
-    
+    static async loginPost(request, response) {
+        const { email, senha } = request.body
+
+        const user = await Cidadaos.findOne({ where: { email: email } })
+
         // Validar email
-        if(!user){
-          request.flash('message', 'Usuário não encontrado')
-          response.redirect('/')
+        if (!user) {
+            request.flash('message', 'Usuário não encontrado')
+            response.redirect('/')
         }
 
-    
+
         request.session.userId = user.id
-    
+
         request.flash('message', 'Autenticação realizado com sucesso!')
-        request.session.save(()=>{
-          response.redirect('/')
+        request.session.save(() => {
+            response.redirect('/')
         })
-    
-      }
+
+    }
 
     static async logout(request, response) {
         request.session.destroy()

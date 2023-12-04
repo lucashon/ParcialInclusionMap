@@ -1,31 +1,49 @@
 <link rel="stylesheet" href="/css/dados.css">
 
-    <div class="todes show"> </div>
-    <section class="container-list">
-        <div class="list">
-    
-            {{#each info}}
-        <div class="info">
-            <div class="box-mais">
-               <div> <img src="/assets/perfil.avif" alt="" width="55px" height="55px"> </div>
-            <p class="nomeCidadao"><span>Nome:</span> {{this.nome}}</p>
-            </div>
-            
-            <p><span>Deficiência:</span> {{this.descricao}}</p>
-                
-                <div class="container-maisinfo">
-                    
-                <a class="link-maisinfo" href="/inclusion/perfil/{{this.id}}">Mais Informações</a>
-                </div>
-                {{!-- <a href="/inclusion/login/{{this.id}}">Login</a> --}}
 
+   
+       
+     
+           
+<table>
+    <tr>
+      <th>NOME</th>
+      <th>EMAIL</th>
+      <th>CPF</th>
+      <th>DEFICIENCIA</th>
+      <th>DESCRIÇÃO</th>
+      <th>SAIBA MAIS</th>
+     
 
+    </tr>
 
-
-        </div>
-            {{/each}}
-
+    {{#if info }}
+     {{#each info}}
+    <tr class="let user of menbers" >
+      <td> {{this.nome}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.cpf}}</td>
+      <td>{{this.descricao}}</td>
+      <td>{{this.dificuldade}}</td>
+      <td><a class="link-maisinfo" href="/inclusion/perfil/{{this.id}}">Mais Informações</a></td>
+     
+   {{/each}}
+    {{else}}
+    <div class="nenhumCadastro">
+    <h2 class="">NENHUM CADASTRO REALIZADO</h2>
     </div>
-    </section>
+    {{/if}}
+    </tr>
+   
+  </table>
 
-<script src="/script/mostrar.js"></script>
+
+  
+     
+
+    
+
+
+
+   
+    
