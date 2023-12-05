@@ -1,6 +1,8 @@
 const { Router } = require('express')
 const Cidadaos = require('../models/cidadaos')
 
+
+
 module.exports = class infoController {
 
     //////// rota home
@@ -17,10 +19,20 @@ module.exports = class infoController {
 
 
         const checkIfUserExist = await Cidadaos.findOne({ where: { email: email } })
+        const checkCpf = await Cidadaos.findOne({where:{cpf:cpf}})
         console.log(checkIfUserExist)
         if (checkIfUserExist) {
+            request.flash('message', 'Esse E-mail já esta cadastrado, por favor insira outro email')
+            response.redirect('/')
+            return 
+        }
+        if (checkCpf ){
+            request.flash('message', 'CPF já esta cadastrado, por favor tente novamente')
+            response.redirect('/')
             return
         }
+
+
 
         const cadastro = {
             nome,
@@ -34,7 +46,7 @@ module.exports = class infoController {
 
         try {
             const createUser = await Cidadaos.create(cadastro)
-            request.session.userId = createUser.id
+          
             // contar cadastros
             const count = await Cidadaos.count()
             // Mostrar o perfil de quem fez o cadastro
@@ -42,11 +54,17 @@ module.exports = class infoController {
             const id = user.id
             console.log(checkIf)
 
+            request.session.userId = createUser.id
 
-            request.session.save(() => {
+            request.flash('message', 'Cadastro realiado com sucesso')
+            request.session.save(()=>{
                 response.render('dados', { count, id })
                 return;
+          
             })
+
+
+           
         } catch (error) {
             console.log(error)
         }
@@ -160,15 +178,36 @@ module.exports = class infoController {
             response.redirect('/')
         }
 
+        const checkIf = request.body.email
 
-        request.session.userId = user.id
+        try {
 
-        request.flash('message', 'Autenticação realizado com sucesso!')
-        request.session.save(() => {
-            response.redirect('/')
-        })
+            // contar cadastros
+            const count = await Cidadaos.count()
+            // Mostrar o perfil de quem fez o cadastro
+            const user = await Cidadaos.findOne({ raw: true, where: { email: checkIf } })
+            const id = user.id
+            const checkPrefeitura = user.email
+            console.log(checkPrefeitura)
+            console.log(checkIf)
+
+            request.session.userId = user.id
+           
+            request.session.save(() => {
+                if(checkPrefeitura === 'prefeituraJS@gmail.com'){
+                response.render('dadosPrefeitura', { count })
+                return;}
+                response.render('dados', { count, id })
+                return;
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
 
     }
+
+
 
     static async logout(request, response) {
         request.session.destroy()

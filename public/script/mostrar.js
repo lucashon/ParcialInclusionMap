@@ -42,7 +42,7 @@ async function mostrarNos(){
          
      </p>
       </div>
-     <img src="/assets/inicio.webp" alt="" width="900px" height="500px">
+     <img class="borda-cor" src="/assets/inicio.webp" alt="" width="900px" height="500px">
     </div>
  </div>`
 }

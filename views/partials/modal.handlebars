@@ -1,0 +1,86 @@
+<style>
+
+
+
+.modal-login{
+    border: 4px solid #97FEED;  background-color: #071952; 
+    
+
+}
+.modal-header, .modal-footer{
+  border-bottom:  none !important; 
+  border-top: none !important;
+}
+
+ form{
+    display: flex; flex-direction: column; align-items: center; gap: 3rem;
+}
+ input{
+    border: none;
+    background-color: #d9d9d975; color: #fff;
+    font-size: 1rem; border-radius: 20px;
+    width: 20rem; height: 3rem;
+
+
+} 
+  input::placeholder{
+    color: white;
+    
+}
+
+.btn-close{
+    background-color: #cd1b1b !important;
+    
+}
+#submit-entrar{
+    border: none;
+    background-color: #97FEED; color: #000;
+    font-size: 1rem; font-weight: bold;
+    border-radius: 20px; cursor: pointer;
+    width: 14rem;  height: 3rem; 
+   
+}
+
+h2{
+    color: #97FEED; font-family: 'Inter', sans-serif;
+
+}  
+
+</style>
+
+
+<div class="  modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-login">
+      <div class="modal-header ">
+         <h2>Entrar na Conta</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    
+          
+
+           
+            <form action="/inclusion/login" method="post">
+
+                <div>
+                    <input type="text" name="email" placeholder="  email ">
+                </div>
+                <div>
+                    <input type="text" name="senha" placeholder="  senha">
+                </div>
+
+                <!-- Enviar informações para o banco -->
+                <div>
+                    <a href=""><input id="submit-entrar" type="submit" value="Login"></a>
+                </div>
+            </form>
+        
+      
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
