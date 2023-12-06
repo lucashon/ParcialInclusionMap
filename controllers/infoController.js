@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const Cidadaos = require('../models/cidadaos')
 
+const bcrypt = require('bcryptjs')
 
 
 module.exports = class infoController {
@@ -21,6 +22,7 @@ module.exports = class infoController {
         const checkIfUserExist = await Cidadaos.findOne({ where: { email: email } })
         const checkCpf = await Cidadaos.findOne({where:{cpf:cpf}})
         console.log(checkIfUserExist)
+
         if (checkIfUserExist) {
             request.flash('message', 'Esse E-mail já esta cadastrado, por favor insira outro email')
             response.redirect('/')
@@ -31,6 +33,9 @@ module.exports = class infoController {
             response.redirect('/')
             return
         }
+
+        // const salt = bcrypt.genSaltSync(10)
+		// const hashedPassword = bcrypt.hashSync(senha + salt)
 
 
 
@@ -177,6 +182,15 @@ module.exports = class infoController {
             request.flash('message', 'Usuário não encontrado')
             response.redirect('/')
         }
+         
+        // const passwordMatch = bcrypt.compareSync(senha, user.senha)
+        // console.log(passwordMatch)
+        // console.log(senha, user.senha)
+
+        // if(!passwordMatch){
+        //     request.flash('message', 'Senha inválida')
+        //     response.redirect('/')
+        // }
 
         const checkIf = request.body.email
 
@@ -195,10 +209,11 @@ module.exports = class infoController {
            
             request.session.save(() => {
                 if(checkPrefeitura === 'prefeituraJS@gmail.com'){
-                response.render('dadosPrefeitura', { count })
-                return;}
-                response.render('dados', { count, id })
-                return;
+               return  response.render('dadosPrefeitura', { count })
+               
+            }
+               return response.render('dados', { count, id })
+                
             })
         } catch (error) {
             console.log(error)

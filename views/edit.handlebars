@@ -1,7 +1,7 @@
  
  <link rel="stylesheet" href="/css/edit.css">
-  <div class="box-modal" id="modal">
-        <div class="modal">
+  <div class="box-modalLogin" id="modalLogin">
+        <div class="modalLogin">
 
             <h2>Atualize seus dados</h2>
             <form action="/inclusion/edit/" method="post">
@@ -15,6 +15,10 @@
                 <div>
                     <span>E-mail:</span>
                     <input type="text" name="email" value="{{perfilCitizen.email}}">
+                </div>
+                <div>
+                    <span>senha:</span>
+                    <input type="text" name="senha" value="{{perfilCitizen.senha}}">
                 </div>
                 <div>
                     <span>CPF:</span>

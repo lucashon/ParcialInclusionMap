@@ -37,7 +37,7 @@ section div{
     outline: none;
     font-family: 'Kameron', serif;
     transition: 1s ease-in-out;
-    border-radius: 10px;
+    border-radius: 10px !important;
 }
 
 svg {
@@ -48,8 +48,8 @@ svg {
     stroke: #fff;
     stroke-dasharray: 150 480;
     stroke-dashoffset: 150;
-    transition: 1s ease-in-out;
-    border-radius: 10px;
+    transition: 1s ease-in-out ;
+    border-radius: 10px !important;
   }
   
   .btn:hover {
@@ -58,15 +58,14 @@ svg {
   }
   .btn:hover svg {
     stroke-dashoffset: -480;
+     border-radius: 10px !;
   }
   .btn span {
     color: white;
     font-size: 18px;
     font-weight: 100;
   }
-  .showVoltar{
-    margin-bottom: 1.1rem;
-  }
+  
 
   article{
    margin-top: 10px; display: flex; flex-direction: row; gap: 12rem; align-items: center;

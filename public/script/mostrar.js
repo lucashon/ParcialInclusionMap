@@ -13,14 +13,14 @@
   Show()
 
 //   Pagina de Visão geral
-  const mostrarBasic2 = document.getElementsByClassName('show2')[0]
+//   const mostrarBasic2 = document.getElementsByClassName('show2')[0]
     
-  async function Show2(){
-      mostrarBasic2.innerHTML =  `<a href="/">Voltar</a>`
+//   async function Show2(){
+//       mostrarBasic2.innerHTML =  `<a href="/">Voltar</a>`
 
-      console.log(error)
-  }
-Show2()
+//       console.log(error)
+//   }
+// Show2()
 
 // Sobre nos no Home
 
@@ -52,6 +52,7 @@ mostrarNos()
 // Mostrar "Voltar" do perfil do cidadão
 const voltar = document.getElementsByClassName('showVoltar')[0]
 const excluir = document.getElementsByClassName('showExcluir')[0]
+const sair = document.getElementsByClassName('showSair')[0]
 
 async function showVoltar(){
   voltar.innerHTML = `<div class="center">
@@ -64,14 +65,24 @@ async function showVoltar(){
   </button>
 </div>`
 
-  excluir.innerHTML = `<div class="center excluir">
-  <button class="btn">
-    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-      <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-      <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-    </svg>
-    <span>Excluir</span>
-  </button>
+//   excluir.innerHTML = `<div class="center excluir">
+//   <button class="btn">
+//     <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+//       <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+//       <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+//     </svg>
+//     <span>Excluir</span>
+//   </button>
+// </div>`
+
+sair.innerHTML = `<div class="center sair">
+<button class="btn">
+  <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+  </svg>
+  <span>Sair</span>
+</button>
 </div>`
 
 

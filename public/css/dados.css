@@ -20,8 +20,8 @@ body{
 }
 .count p{ margin: 0; font-size:280px ;}
 
-.conteudo{ border: 2px solid #97FEED; border-radius: 15px; margin-top: 1rem; margin-bottom: 1rem;}
-.conteudo h2{margin: 10px 10px 10px 10px; font-size: 2rem;}
+.d{ border: 2px solid #97FEED; border-radius: 15px; margin-top: 1rem; margin-bottom: 1rem;}
+.d h2{margin: 10px 10px 10px 10px; font-size: 2rem; font-family: 'Kameron', serif; color: #e1d9d9;}
 
 .count{
    height: 70vh; display: grid; justify-items: center; }
@@ -38,7 +38,7 @@ body{
     box-shadow: 0px 1px 3px 0px black;
 }
 
-.link-mostrar a{ color: black; text-decoration: none;  background-color: #97FEED ; 
+.link-mostrar a{ color: black; text-decoration: none;  ; 
     font-weight: bold; font-family: 'Kameron', serif; padding: 5px; }
 
 .link-mostrar {  
@@ -75,13 +75,13 @@ table {
   }
   
   td, th {
-    border: 1px solid #000000;
+    border: 1px solid #000000b4;
     text-align: left;
     padding: 8px;
   }
   
   tr:nth-child(even) {
-    background-color: #000000;
+    background-color: #000000b4;
   }
 
 
